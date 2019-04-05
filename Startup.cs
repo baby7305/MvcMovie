@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MvcMovie.Models;
 
 namespace MvcMovie0405 {
     public class Startup {
@@ -24,6 +26,9 @@ namespace MvcMovie0405 {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddDbContext<MvcMovieContext> (options =>
+                options.UseSqlite (Configuration.GetConnectionString ("MovieContext")));
 
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
         }
