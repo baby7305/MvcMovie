@@ -299,3 +299,5 @@ __pycache__/
 *.xsd.cs
 
 \.vscode/
+
+MvcMovie\.db
